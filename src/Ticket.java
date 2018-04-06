@@ -33,7 +33,6 @@ public class Ticket {
     }
 
     public void calculateDueDate() {
-        dueDate = timeOfReport.plusHours(turnaroundTime);
         int modulus = (int)turnaroundTime % 8;
         if(modulus == 0) {
             dueDate = timeOfReport.plusDays(turnaroundTime/8);
