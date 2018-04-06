@@ -13,7 +13,7 @@ public class Ticket {
             timeOfReport = LocalDateTime.now();
             this.turnaroundTime = turnaroundTime;
         } else {
-            throw new Exception("You cannot report new bug outside working hours");
+            throw new Exception("You cannot report new bug outside working hours.");
         }
     }
 
@@ -34,9 +34,7 @@ public class Ticket {
     }
 
     public void calculateDueDate() throws Exception {
-        if(timeOfReport == null) {
-            throw new NullPointerException();
-        } else if (turnaroundTime <= 0){
+        if (turnaroundTime <= 0){
             throw new Exception("You need to have a valid turn around time.");
         }
         
