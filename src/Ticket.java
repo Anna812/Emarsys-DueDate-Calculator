@@ -8,19 +8,18 @@ public class Ticket {
     private final int workDayStart = 9;
     private final int workDayEnd = 17;
 
-    public Ticket(int turnaroundTime) throws Exception {
-        if(checkIfWorktime(LocalDateTime.now()) && !checkIfWeekend(LocalDateTime.now())) {
-            timeOfReport = LocalDateTime.now();
+    public Ticket(int turnaroundTime, LocalDateTime timeOfReport) {
+        if(turnaroundTime > 0) {
             this.turnaroundTime = turnaroundTime;
         } else {
-            throw new Exception("You cannot report new bug outside working hours.");
+            throw new IllegalArgumentException();
         }
-    }
 
-    // this constructor is only used to be able to create test Tickets after working hours and on weekends too
-    Ticket(int turnaroundTime, LocalDateTime timeOfReport) {
-        this.turnaroundTime = turnaroundTime;
-        this.timeOfReport = timeOfReport;
+        if(checkIfWorktime(timeOfReport) && !checkIfWeekend(timeOfReport)) {
+            this.timeOfReport = timeOfReport;
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     private boolean checkIfWorktime(LocalDateTime localDateTime) {
@@ -33,11 +32,7 @@ public class Ticket {
         return nowNameOfDay.equals(DayOfWeek.SATURDAY) || nowNameOfDay.equals(DayOfWeek.SUNDAY);
     }
 
-    public void calculateDueDate() throws Exception {
-        if (turnaroundTime <= 0){
-            throw new Exception("You need to have a valid turn around time.");
-        }
-        
+    public void calculateDueDate() {
         dueDate = timeOfReport;
         int workDayLength = workDayEnd - workDayStart;
         int leftoverTime = turnaroundTime % workDayLength;
