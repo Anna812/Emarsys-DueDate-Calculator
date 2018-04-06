@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 public class Ticket {
     private LocalDateTime timeOfReport;
     private int turnaroundTime;
-    public LocalDateTime dueDate;
+    LocalDateTime dueDate;
 
-    Ticket(int turnaroundTime) throws Exception {
+    public Ticket(int turnaroundTime) throws Exception {
         if(checkIfWorktime(LocalDateTime.now()) && !checkIfWeekend(LocalDateTime.now())) {
             timeOfReport = LocalDateTime.now();
             this.turnaroundTime = turnaroundTime;
@@ -42,6 +42,7 @@ public class Ticket {
                 dueDate = dueDate.plusDays(1);
             }
         }
+
         if(modulus != 0) {
             dueDate = dueDate.plusHours(modulus);
         }
