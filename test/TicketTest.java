@@ -7,6 +7,15 @@ import static org.junit.Assert.*;
 public class TicketTest {
 
     @Test
+    public void checkTicketConstructorValidationTestOutofWorkingHours(){
+        try {
+            Ticket ticket = new Ticket(1);
+        } catch (Exception e) {
+            assertEquals("You cannot report new bug outside working hours", e.getMessage());
+        }
+    }
+
+    @Test
     public void calculateDueDateTestTurnaroundIsOneHour() {
         Ticket ticket = new Ticket(1, new Date(2018, Calendar.APRIL, 06, 9, 00));
         ticket.calculateDueDate();
