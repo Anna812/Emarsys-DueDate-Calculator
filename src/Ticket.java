@@ -1,3 +1,4 @@
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -7,7 +8,7 @@ public class Ticket {
     public Date dueDate;
 
     public Ticket(int turnaroundTime) throws Exception {
-        if(checkIfWorktime()) {
+        if(checkIfWorktime() && !checkIfWeekend()) {
             timeOfReport = LocalDateTime.now();
             this.turnaroundTime = turnaroundTime;
         } else {
@@ -22,7 +23,12 @@ public class Ticket {
 
     private boolean checkIfWorktime() {
         int nowInHour = LocalDateTime.now().getHour();
-        return (nowInHour < 17 && nowInHour > 9);
+        return nowInHour < 17 && nowInHour > 9;
+    }
+
+    private boolean checkIfWeekend(){
+        DayOfWeek nowNameOfDay = LocalDateTime.now().getDayOfWeek();
+        return nowNameOfDay.equals("SATURDAY") || nowNameOfDay.equals("SUNDAY");
     }
 
     public void calculateDueDate() {
