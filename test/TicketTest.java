@@ -10,7 +10,7 @@ public class TicketTest {
     @Test
     public void checkTicketConstructorValidationTestOutofWorkingHours(){
         try {
-            Ticket ticket = new Ticket(1);
+            Ticket ticket = new Ticket(1L);
             fail();
         } catch (Exception e) {
             assertEquals("You cannot report new bug outside working hours", e.getMessage());
@@ -20,7 +20,7 @@ public class TicketTest {
     @Test
     public void checkTicketConstructorValidationTestWeekend(){
         try {
-            Ticket ticket = new Ticket(1);
+            Ticket ticket = new Ticket(1L);
             fail("exception is expected if test runs on weekend");
         } catch (Exception e) {
             assertEquals("You cannot report new bug outside working hours", e.getMessage());

@@ -1,13 +1,12 @@
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Ticket {
     public LocalDateTime timeOfReport;
-    public int turnaroundTime;
-    public Date dueDate;
+    public long turnaroundTime;
+    public LocalDateTime dueDate;
 
-    public Ticket(int turnaroundTime) throws Exception {
+    public Ticket(long turnaroundTime) throws Exception {
         if(checkIfWorktime() && !checkIfWeekend()) {
             timeOfReport = LocalDateTime.now();
             this.turnaroundTime = turnaroundTime;
@@ -16,7 +15,7 @@ public class Ticket {
         }
     }
 
-    public Ticket(int turnaroundTime, LocalDateTime timeOfReport) {
+    public Ticket(long turnaroundTime, LocalDateTime timeOfReport) {
         this.turnaroundTime = turnaroundTime;
         this.timeOfReport = timeOfReport;
     }
@@ -32,6 +31,6 @@ public class Ticket {
     }
 
     public void calculateDueDate() {
-
+        dueDate = timeOfReport.plusHours(turnaroundTime);
     }
 }
