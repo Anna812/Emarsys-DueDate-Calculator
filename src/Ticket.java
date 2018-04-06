@@ -1,5 +1,7 @@
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Ticket {
     public LocalDateTime timeOfReport;
@@ -32,5 +34,11 @@ public class Ticket {
 
     public void calculateDueDate() {
         dueDate = timeOfReport.plusHours(turnaroundTime);
+        int modulus = (int)turnaroundTime % 8;
+        if(modulus == 0) {
+            dueDate = timeOfReport.plusDays(turnaroundTime/8);
+        } else {
+            dueDate = timeOfReport.plusDays(turnaroundTime/8).plusHours(modulus);
+        }
     }
 }
