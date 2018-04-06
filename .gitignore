@@ -20,3 +20,14 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+## File-based project format:
+*.iws
+
+# IntelliJ
+/out/
+.idea/*
+*.iml
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
