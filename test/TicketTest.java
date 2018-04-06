@@ -30,7 +30,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestTurnaroundIsOneHour() {
         Ticket ticket = new Ticket(1, LocalDateTime.of(2018, Month.APRIL, 6, 9, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 6, 10, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -38,7 +42,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestTurnaroundIsEightHours() {
         Ticket ticket = new Ticket(8, LocalDateTime.of(2018, Month.APRIL, 4, 9, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 5, 9, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -46,7 +54,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestTurnaroundIsEightHoursMidDay() {
         Ticket ticket = new Ticket(8, LocalDateTime.of(2018, Month.APRIL, 4, 10, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 5, 10, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -54,7 +66,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestTurnaroundIsNineHours() {
         Ticket ticket = new Ticket(9, LocalDateTime.of(2018, Month.APRIL, 4, 9, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 5, 10, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -62,7 +78,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestTurnaroundIsNineHoursMidDay() {
         Ticket ticket = new Ticket(9, LocalDateTime.of(2018, Month.APRIL, 4, 10, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 5, 11, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -70,7 +90,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestTurnaroundIsNineHoursSaturday() {
         Ticket ticket = new Ticket(9, LocalDateTime.of(2018, Month.APRIL, 6, 10, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 9, 11, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -78,7 +102,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestNewMonth() {
         Ticket ticket = new Ticket(9, LocalDateTime.of(2017, Month.DECEMBER, 29, 10, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.JANUARY, 1, 11, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -86,7 +114,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestLongTurnaround() {
         Ticket ticket = new Ticket(45, LocalDateTime.of(2018, Month.APRIL, 10, 10, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 17, 15, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -94,7 +126,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestReportedEndOfDay() {
         Ticket ticket = new Ticket(2, LocalDateTime.of(2018, Month.APRIL, 10, 16, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 11, 10, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -102,7 +138,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestReportedEndOfFriday() {
         Ticket ticket = new Ticket(2, LocalDateTime.of(2018, Month.APRIL, 6, 16, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 9, 10, 0);
         assertEquals(result, ticket.dueDate);
     }
@@ -110,7 +150,11 @@ public class TicketTest {
     @Test
     public void calculateDueDateTestReportedEndOfFridayNineHoursTurnaround() {
         Ticket ticket = new Ticket(9, LocalDateTime.of(2018, Month.APRIL, 6, 16, 0));
-        ticket.calculateDueDate();
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 9, 17, 0);
         assertEquals(result, ticket.dueDate);
     }
