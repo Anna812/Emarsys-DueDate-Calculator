@@ -23,7 +23,7 @@ public class Ticket {
 
     private boolean checkIfWorktime(LocalDateTime localDateTime) {
         int nowInHour = localDateTime.getHour();
-        return nowInHour < 17 && nowInHour > 9;
+        return nowInHour <= 17 && nowInHour >= 9;
     }
 
     private boolean checkIfWeekend(LocalDateTime localDateTime){
