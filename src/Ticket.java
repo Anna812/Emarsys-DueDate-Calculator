@@ -45,6 +45,9 @@ public class Ticket {
 
         if(modulus != 0) {
             dueDate = dueDate.plusHours(modulus);
+            if(!checkIfWorktime(dueDate)) {
+                dueDate = dueDate.plusHours(16);
+            }
         }
     }
 }
