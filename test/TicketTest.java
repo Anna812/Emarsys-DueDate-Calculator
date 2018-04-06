@@ -180,4 +180,16 @@ public class TicketTest {
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 17, 12, 0);
         assertEquals(result, ticket.dueDate);
     }
+
+    @Test
+    public void calculateDueDateTestSeveralWeekendsIsWithinTurnaroundPeriodAndCannotBeDividedByEight() {
+        Ticket ticket = new Ticket(78, LocalDateTime.of(2018, Month.APRIL, 4, 12, 0));
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 18, 10, 0);
+        assertEquals(result, ticket.dueDate);
+    }
 }
