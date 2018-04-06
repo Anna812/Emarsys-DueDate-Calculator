@@ -98,4 +98,12 @@ public class TicketTest {
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 11, 10, 0);
         assertEquals(result, ticket.dueDate);
     }
+
+    @Test
+    public void calculateDueDateTestReportedEndOfFriday() {
+        Ticket ticket = new Ticket(2, LocalDateTime.of(2018, Month.APRIL, 6, 16, 0));
+        ticket.calculateDueDate();
+        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 9, 10, 0);
+        assertEquals(result, ticket.dueDate);
+    }
 }
