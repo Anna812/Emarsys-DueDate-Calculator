@@ -36,22 +36,13 @@ public class Ticket {
         dueDate = timeOfReport;
 
         for(int i = 0; i < result; i++) {
+            dueDate = dueDate.plusDays(1);
             while(checkIfWeekend(dueDate)) {
                 dueDate = dueDate.plusDays(1);
             }
-            dueDate = dueDate.plusDays(1);
         }
         if(modulus != 0) {
             dueDate = dueDate.plusHours(modulus);
         }
-//        if(modulus == 0) {
-//            dueDate = timeOfReport.plusDays(turnaroundTime/8);
-//        } else {
-//            dueDate = timeOfReport.plusDays(turnaroundTime/8).plusHours(modulus);
-//        }
-//        while(checkIfWeekend(dueDate)) {
-//            dueDate = dueDate.plusDays(1);
-//        }
-
     }
 }
