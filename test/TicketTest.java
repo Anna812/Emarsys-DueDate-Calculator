@@ -36,10 +36,10 @@ public class TicketTest {
     }
 
     @Test
-    public void calculateDueDateTestTurnaroundIsNineHour() {
-        Ticket ticket = new Ticket(1, LocalDateTime.of(2018, Month.APRIL, 04, 9, 00));
+    public void calculateDueDateTestTurnaroundIsEightHour() {
+        Ticket ticket = new Ticket(8, LocalDateTime.of(2018, Month.APRIL, 04, 9, 00));
         ticket.calculateDueDate();
-        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 05, 10, 00);
+        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 04, 17, 00);
         assertEquals(result, ticket.dueDate);
     }
 }
