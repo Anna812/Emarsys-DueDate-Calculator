@@ -1,14 +1,12 @@
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Ticket {
     public LocalDateTime timeOfReport;
-    public long turnaroundTime;
+    public int turnaroundTime;
     public LocalDateTime dueDate;
 
-    public Ticket(long turnaroundTime) throws Exception {
+    public Ticket(int turnaroundTime) throws Exception {
         if(checkIfWorktime(LocalDateTime.now()) && !checkIfWeekend(LocalDateTime.now())) {
             timeOfReport = LocalDateTime.now();
             this.turnaroundTime = turnaroundTime;
@@ -17,7 +15,7 @@ public class Ticket {
         }
     }
 
-    public Ticket(long turnaroundTime, LocalDateTime timeOfReport) {
+    public Ticket(int turnaroundTime, LocalDateTime timeOfReport) {
         this.turnaroundTime = turnaroundTime;
         this.timeOfReport = timeOfReport;
     }
@@ -33,14 +31,27 @@ public class Ticket {
     }
 
     public void calculateDueDate() {
-        int modulus = (int)turnaroundTime % 8;
-        if(modulus == 0) {
-            dueDate = timeOfReport.plusDays(turnaroundTime/8);
-        } else {
-            dueDate = timeOfReport.plusDays(turnaroundTime/8).plusHours(modulus);
-        }
-        while(checkIfWeekend(dueDate)) {
+        int modulus = turnaroundTime % 8;
+        int result = turnaroundTime / 8;
+        dueDate = timeOfReport;
+
+        for(int i = 0; i < result; i++) {
+            while(checkIfWeekend(dueDate)) {
+                dueDate = dueDate.plusDays(1);
+            }
             dueDate = dueDate.plusDays(1);
         }
+        if(modulus != 0) {
+            dueDate = dueDate.plusHours(modulus);
+        }
+//        if(modulus == 0) {
+//            dueDate = timeOfReport.plusDays(turnaroundTime/8);
+//        } else {
+//            dueDate = timeOfReport.plusDays(turnaroundTime/8).plusHours(modulus);
+//        }
+//        while(checkIfWeekend(dueDate)) {
+//            dueDate = dueDate.plusDays(1);
+//        }
+
     }
 }
