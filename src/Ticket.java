@@ -9,4 +9,8 @@ public class Ticket {
         timeOfReport = new Date();
         this.turnaroundTime = turnaroundTime;
     }
+
+    public void calculateDueDate() {
+        
+    }
 }
