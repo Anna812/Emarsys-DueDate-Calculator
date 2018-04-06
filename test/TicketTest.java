@@ -13,7 +13,7 @@ public class TicketTest {
             new Ticket(1);
             fail();
         } catch (Exception e) {
-            assertEquals("You cannot report new bug outside working hours", e.getMessage());
+            assertEquals("You cannot report new bug outside working hours.", e.getMessage());
         }
     }
 
@@ -21,9 +21,19 @@ public class TicketTest {
     public void checkTicketConstructorValidationTestWeekend(){
         try {
             new Ticket(1);
-            fail("exception is expected if test runs on weekend");
+            fail("Exception is expected if test runs on weekend");
         } catch (Exception e) {
-            assertEquals("You cannot report new bug outside working hours", e.getMessage());
+            assertEquals("You cannot report new bug outside working hours.", e.getMessage());
+        }
+    }
+
+    @Test
+    public void calculateDueDateTestInvalidTurnaroundValue(){
+        try {
+            new Ticket(-1);
+            fail("Exception is expected if turnaround value is invalid");
+        } catch (Exception e) {
+            assertEquals("You need to have a valid turn around time.", e.getMessage());
         }
     }
 
