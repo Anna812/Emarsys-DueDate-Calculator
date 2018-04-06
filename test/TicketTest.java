@@ -168,4 +168,16 @@ public class TicketTest {
         LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 9, 17, 0);
         assertEquals(result, ticket.dueDate);
     }
+
+    @Test
+    public void calculateDueDateTestSeveralWeekendsIsWithinTurnaroundPeriod() {
+        Ticket ticket = new Ticket(72, LocalDateTime.of(2018, Month.APRIL, 4, 12, 0));
+        try {
+            ticket.calculateDueDate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 17, 12, 0);
+        assertEquals(result, ticket.dueDate);
+    }
 }
