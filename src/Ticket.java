@@ -31,7 +31,13 @@ public class Ticket {
         return nowNameOfDay.equals(DayOfWeek.SATURDAY) || nowNameOfDay.equals(DayOfWeek.SUNDAY);
     }
 
-    public void calculateDueDate() {
+    public void calculateDueDate() throws Exception {
+        if(timeOfReport == null) {
+            throw new NullPointerException();
+        } else if (turnaroundTime <= 0){
+            throw new Exception("You need to have a valid turn around time.");
+        }
+        
         dueDate = timeOfReport;
         int modulus = turnaroundTime % 8;
 
