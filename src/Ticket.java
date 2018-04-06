@@ -14,6 +14,11 @@ public class Ticket {
         }
     }
 
+    public Ticket(int turnaroundTime, Date timeOfReport) {
+        this.turnaroundTime = turnaroundTime;
+        this.timeOfReport = timeOfReport;
+    }
+
     private boolean checkIfWorktime() {
         Date now = new Date();
         int nowHour = now.getHours();
