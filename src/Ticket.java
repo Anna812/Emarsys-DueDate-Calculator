@@ -33,15 +33,9 @@ public class Ticket {
 
     public void calculateDueDate() {
         int modulus = turnaroundTime % 8;
-        int result = turnaroundTime / 8;
         dueDate = timeOfReport;
 
-        for(int i = 0; i < result; i++) {
-            dueDate = dueDate.plusDays(1);
-            while(checkIfWeekend(dueDate)) {
-                dueDate = dueDate.plusDays(1);
-            }
-        }
+        calculateDate(turnaroundTime / 8);
 
         if(modulus != 0) {
             dueDate = dueDate.plusHours(modulus);
@@ -50,6 +44,15 @@ public class Ticket {
                 while(checkIfWeekend(dueDate)) {
                     dueDate = dueDate.plusDays(1);
                 }
+            }
+        }
+    }
+
+    private void calculateDate(int result) {
+        for(int i = 0; i < result; i++) {
+            dueDate = dueDate.plusDays(1);
+            while(checkIfWeekend(dueDate)) {
+                dueDate = dueDate.plusDays(1);
             }
         }
     }
