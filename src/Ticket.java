@@ -47,8 +47,8 @@ public class Ticket {
 
         if(!checkIfWorktime(dueDate)) {
             dueDate = dueDate.plusHours(16);
-            while(checkIfWeekend(dueDate)) {
-                dueDate = dueDate.plusDays(1);
+            if(checkIfWeekend(dueDate)) {
+                dueDate = dueDate.plusDays(2);
             }
         }
     }
@@ -56,8 +56,8 @@ public class Ticket {
     private void calculateDate(int result) {
         for(int i = 0; i < result; i++) {
             dueDate = dueDate.plusDays(1);
-            while(checkIfWeekend(dueDate)) {
-                dueDate = dueDate.plusDays(1);
+            if(checkIfWeekend(dueDate)) {
+                dueDate = dueDate.plusDays(2);
             }
         }
     }
