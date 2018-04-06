@@ -39,5 +39,8 @@ public class Ticket {
         } else {
             dueDate = timeOfReport.plusDays(turnaroundTime/8).plusHours(modulus);
         }
+        while(checkIfWeekend(dueDate)) {
+            dueDate = dueDate.plusDays(1);
+        }
     }
 }
