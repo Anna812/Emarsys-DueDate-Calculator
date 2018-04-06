@@ -2,11 +2,11 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 public class Ticket {
-    public LocalDateTime timeOfReport;
-    public int turnaroundTime;
+    private LocalDateTime timeOfReport;
+    private int turnaroundTime;
     public LocalDateTime dueDate;
 
-    public Ticket(int turnaroundTime) throws Exception {
+    Ticket(int turnaroundTime) throws Exception {
         if(checkIfWorktime(LocalDateTime.now()) && !checkIfWeekend(LocalDateTime.now())) {
             timeOfReport = LocalDateTime.now();
             this.turnaroundTime = turnaroundTime;
@@ -15,7 +15,8 @@ public class Ticket {
         }
     }
 
-    public Ticket(int turnaroundTime, LocalDateTime timeOfReport) {
+    // this constructor is only used to be able to create test Tickets after working hours and on weekends too
+    Ticket(int turnaroundTime, LocalDateTime timeOfReport) {
         this.turnaroundTime = turnaroundTime;
         this.timeOfReport = timeOfReport;
     }
