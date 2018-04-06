@@ -7,7 +7,7 @@ public class Ticket {
     public LocalDateTime dueDate;
 
     public Ticket(long turnaroundTime) throws Exception {
-        if(checkIfWorktime() && !checkIfWeekend()) {
+        if(checkIfWorktime(LocalDateTime.now()) && !checkIfWeekend(LocalDateTime.now())) {
             timeOfReport = LocalDateTime.now();
             this.turnaroundTime = turnaroundTime;
         } else {
@@ -20,14 +20,14 @@ public class Ticket {
         this.timeOfReport = timeOfReport;
     }
 
-    private boolean checkIfWorktime() {
-        int nowInHour = LocalDateTime.now().getHour();
+    private boolean checkIfWorktime(LocalDateTime localDateTime) {
+        int nowInHour = localDateTime.getHour();
         return nowInHour < 17 && nowInHour > 9;
     }
 
-    private boolean checkIfWeekend(){
-        DayOfWeek nowNameOfDay = LocalDateTime.now().getDayOfWeek();
-        return nowNameOfDay.equals("SATURDAY") || nowNameOfDay.equals("SUNDAY");
+    private boolean checkIfWeekend(LocalDateTime localDateTime){
+        DayOfWeek nowNameOfDay = localDateTime.getDayOfWeek();
+        return nowNameOfDay.equals(DayOfWeek.SATURDAY) || nowNameOfDay.equals(DayOfWeek.SUNDAY);
     }
 
     public void calculateDueDate() {
