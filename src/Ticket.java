@@ -32,18 +32,23 @@ public class Ticket {
     }
 
     public void calculateDueDate() {
-        int modulus = turnaroundTime % 8;
         dueDate = timeOfReport;
+        int modulus = turnaroundTime % 8;
 
         calculateDate(turnaroundTime / 8);
-
+        
         if(modulus != 0) {
-            dueDate = dueDate.plusHours(modulus);
-            if(!checkIfWorktime(dueDate)) {
-                dueDate = dueDate.plusHours(16);
-                while(checkIfWeekend(dueDate)) {
-                    dueDate = dueDate.plusDays(1);
-                }
+            calculateTime(modulus);
+        }
+    }
+
+    private void calculateTime(int modulus) {
+        dueDate = dueDate.plusHours(modulus);
+
+        if(!checkIfWorktime(dueDate)) {
+            dueDate = dueDate.plusHours(16);
+            while(checkIfWeekend(dueDate)) {
+                dueDate = dueDate.plusDays(1);
             }
         }
     }
