@@ -71,7 +71,7 @@ public class TicketTest {
     public void calculateDueDateTestTurnaroundIsNineHoursSaturday() {
         Ticket ticket = new Ticket(9, LocalDateTime.of(2018, Month.APRIL, 06, 10, 00));
         ticket.calculateDueDate();
-        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 8, 11, 00);
+        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 9, 11, 00);
         assertEquals(result, ticket.dueDate);
     }
 }
