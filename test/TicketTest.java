@@ -69,17 +69,25 @@ public class TicketTest {
 
     @Test
     public void calculateDueDateTestTurnaroundIsNineHoursSaturday() {
-        Ticket ticket = new Ticket(9, LocalDateTime.of(2018, Month.APRIL, 6, 10, 00));
+        Ticket ticket = new Ticket(9, LocalDateTime.of(2018, Month.APRIL, 6, 10, 0));
         ticket.calculateDueDate();
-        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 9, 11, 00);
+        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 9, 11, 0);
         assertEquals(result, ticket.dueDate);
     }
 
     @Test
     public void calculateDueDateTestNewMonth() {
-        Ticket ticket = new Ticket(9, LocalDateTime.of(2017, Month.DECEMBER, 29, 10, 00));
+        Ticket ticket = new Ticket(9, LocalDateTime.of(2017, Month.DECEMBER, 29, 10, 0));
         ticket.calculateDueDate();
-        LocalDateTime result = LocalDateTime.of(2018, Month.JANUARY, 1, 11, 00);
+        LocalDateTime result = LocalDateTime.of(2018, Month.JANUARY, 1, 11, 0);
+        assertEquals(result, ticket.dueDate);
+    }
+
+    @Test
+    public void calculateDueDateTestLongTurnaround() {
+        Ticket ticket = new Ticket(45, LocalDateTime.of(2018, Month.APRIL, 10, 10, 0));
+        ticket.calculateDueDate();
+        LocalDateTime result = LocalDateTime.of(2018, Month.APRIL, 17, 15, 0);
         assertEquals(result, ticket.dueDate);
     }
 }
