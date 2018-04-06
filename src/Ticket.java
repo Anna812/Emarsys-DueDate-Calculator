@@ -47,6 +47,9 @@ public class Ticket {
             dueDate = dueDate.plusHours(modulus);
             if(!checkIfWorktime(dueDate)) {
                 dueDate = dueDate.plusHours(16);
+                while(checkIfWeekend(dueDate)) {
+                    dueDate = dueDate.plusDays(1);
+                }
             }
         }
     }
