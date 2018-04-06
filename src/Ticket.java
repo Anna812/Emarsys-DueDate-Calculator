@@ -5,6 +5,8 @@ public class Ticket {
     private LocalDateTime timeOfReport;
     private int turnaroundTime;
     LocalDateTime dueDate;
+    private final int workDayStart = 9;
+    private final int workDayEnd = 17;
 
     public Ticket(int turnaroundTime) throws Exception {
         if(checkIfWorktime(LocalDateTime.now()) && !checkIfWeekend(LocalDateTime.now())) {
@@ -23,7 +25,7 @@ public class Ticket {
 
     private boolean checkIfWorktime(LocalDateTime localDateTime) {
         int nowInHour = localDateTime.getHour();
-        return nowInHour <= 17 && nowInHour >= 9;
+        return nowInHour <= workDayEnd && nowInHour >= workDayStart;
     }
 
     private boolean checkIfWeekend(LocalDateTime localDateTime){
@@ -39,9 +41,10 @@ public class Ticket {
         }
         
         dueDate = timeOfReport;
-        int leftoverTime = turnaroundTime % 8;
+        int workDayLength = workDayEnd - workDayStart;
+        int leftoverTime = turnaroundTime % workDayLength;
 
-        calculateDate(turnaroundTime / 8);
+        calculateDate(turnaroundTime / workDayLength);
         
         if(leftoverTime != 0) {
             calculateTime(leftoverTime);
@@ -52,7 +55,7 @@ public class Ticket {
         dueDate = dueDate.plusHours(leftoverTime);
 
         if(!checkIfWorktime(dueDate)) {
-            dueDate = dueDate.plusHours(16);
+            dueDate = dueDate.plusHours(24 -  workDayEnd + workDayStart);
             stepOverWeekend();
         }
     }
