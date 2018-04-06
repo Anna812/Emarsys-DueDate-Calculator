@@ -39,17 +39,17 @@ public class Ticket {
         }
         
         dueDate = timeOfReport;
-        int modulus = turnaroundTime % 8;
+        int leftoverTime = turnaroundTime % 8;
 
         calculateDate(turnaroundTime / 8);
         
-        if(modulus != 0) {
-            calculateTime(modulus);
+        if(leftoverTime != 0) {
+            calculateTime(leftoverTime);
         }
     }
 
-    private void calculateTime(int modulus) {
-        dueDate = dueDate.plusHours(modulus);
+    private void calculateTime(int leftoverTime) {
+        dueDate = dueDate.plusHours(leftoverTime);
 
         if(!checkIfWorktime(dueDate)) {
             dueDate = dueDate.plusHours(16);
@@ -57,8 +57,8 @@ public class Ticket {
         }
     }
 
-    private void calculateDate(int result) {
-        for(int i = 0; i < result; i++) {
+    private void calculateDate(int limit) {
+        for(int i = 0; i < limit; i++) {
             dueDate = dueDate.plusDays(1);
             stepOverWeekend();
         }
