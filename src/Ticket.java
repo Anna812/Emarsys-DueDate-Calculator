@@ -9,17 +9,11 @@ public class Ticket {
     private final int workDayEnd = 17;
 
     public Ticket(int turnaroundTime, LocalDateTime timeOfReport) {
-        if(turnaroundTime > 0) {
-            this.turnaroundTime = turnaroundTime;
-        } else {
+        if (turnaroundTime <= 0 || !checkIfWorktime(timeOfReport) || checkIfWeekend(timeOfReport)) {
             throw new IllegalArgumentException();
         }
-
-        if(checkIfWorktime(timeOfReport) && !checkIfWeekend(timeOfReport)) {
-            this.timeOfReport = timeOfReport;
-        } else {
-            throw new IllegalArgumentException();
-        }
+        this.turnaroundTime = turnaroundTime;
+        this.timeOfReport = timeOfReport;
     }
 
     private boolean checkIfWorktime(LocalDateTime localDateTime) {
